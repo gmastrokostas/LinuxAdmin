@@ -21,7 +21,7 @@ IPADDR=192.168.1.101
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
 ```
-**1) Under /etc/sysconfig/network-scripts edit ifcfg-ens34 and ifcfg-35 to look like this**
+**2) Under /etc/sysconfig/network-scripts edit ifcfg-ens34 and ifcfg-35 to look like this**
 ```
 DEVICE=ens34
 NAME=ens34
@@ -40,7 +40,7 @@ MASTER=bond0
 SLAVE=yes
 ```
 
-**1) Bring the bond0 interface up.**
+**3) Bring the bond0 interface up.**
 ```
 ifdown bond0; ifup bond0
 ```
