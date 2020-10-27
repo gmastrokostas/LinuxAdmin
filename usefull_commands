@@ -1,0 +1,5 @@
+#Check open deleted files
+lsof +L1
+
+#
+mount --bind / /mnt
