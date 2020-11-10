@@ -1,0 +1,37 @@
+BACKSTORES
+	block  - Local disk is shared
+	fileio - Files are treated as disk images
+	pscsi  - Allows a local SCSI device of any type to be shared
+	ramdisk - Allows kernel memory to be shared as a block SCSI device.
+
+TARGETS
+	Targets are instances of a fabric to specific kernel protocols, iSCSI, FibreChannel, SBP-2.
+	The target name is WWN(World Wide name)
+	
+	iscsi
+	   iqn - Created under iscsi
+     	     - tpg1    - targetcli will automatically create one TPG when the target is created
+	     - portals - An iSCSI target can be reached via multiple IPs. Below line means the target is listening on all IPs
+               - 0.0.0.0:3260
+             - luns - This is a SCSI logical unit. It links the defined storage with the target.
+	     - acls - allows you to configure a LUN masking policy for each connected iSCSI initiator. The default policy gives all iSCSI initiators full 			read/write access to all LUNs.  
+- / ......................................................................................................................... [...]
+  o- backstores .............................................................................................................. [...]
+  | o- block .................................................................................................. [Storage Objects: 0]
+  | o- fileio ................................................................................................. [Storage Objects: 1]
+  | | o- hpv0_iscsi_disc01 ..................... [/hpv1_storage/iscsi_disks/hpv0_iscsi_disc01.img (100.0GiB) write-back deactivated]
+  | |   o- alua ................................................................................................... [ALUA Groups: 1]
+  | |     o- default_tg_pt_gp ....................................................................... [ALUA state: Active/optimized]
+  | o- pscsi .................................................................................................. [Storage Objects: 0]
+  | o- ramdisk ................................................................................................ [Storage Objects: 0]
+  o- iscsi ............................................................................................................ [Targets: 1]
+  | o- iqn.2019-10.world.srv:dlp.target01 ................................................................................ [TPGs: 1]
+  |   o- tpg1 ............................................................................................... [no-gen-acls, no-auth]
+  |     o- acls .......................................................................................................... [ACLs: 0]
+  |     o- luns .......................................................................................................... [LUNs: 0]
+  |     o- portals .................................................................................................... [Portals: 1]
+  |       o- 0.0.0.0:3260 ..................................................................................................... [OK]
+
+	
+
+
