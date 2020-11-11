@@ -33,5 +33,42 @@ TARGETS
   |       o- 0.0.0.0:3260 ..................................................................................................... [OK]
 
 	
+#Create first the backstore
+cd backstores/fileio
+create hpv1_disk1 /hpv1_storage/iscsi_disks/hpv1_disk1
+#Then create a target, a lun and an acl
+cd /iscsi
+create iqn.2020-11.sfentona.lol.hpv1.target01
+cd iqn.2020-11.sfentona.lol.hpv1.target01/tpg1/luns
+create /hpv1_storage/iscsi_disks/hpv1_disk1
+cd ../acl
+set auth userid=ansible
+set auth password=zxc
+exit
+#Firewall setup
+firewall-cmd  --add-service=iscsi-target --permanent
+firewall-cmd --reload
+
+#On the client side
+#On /etc/iscsi/initiatorname.iscsi enter the target
+InitiatorName=iqn.2020-11.sfentona.lol.hpv1.initiator1
+#On /etc/iscsi/iscsid.conf ucomment and adjust the following
+node.session.auth.authmethod = CHAP
+node.session.auth.username = ansible
+node.session.auth.password = zxc
+
+#Make the client discover the target.
+iscsiadm -m discovery -t sendtargets -p 192.168.1.4
+#Confirm
+iscsiadm -m node -o show
+#Login
+iscsiadm -m node --login
+#Confirm
+iscsiadm -m session -o show
+
+
+
+
+
 
 
