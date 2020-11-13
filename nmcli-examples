@@ -1,0 +1,5 @@
+#Create a team by importing a json file
+nmcli connection add type team con-name team0 ifname team0 config team0.json ip4 192.168.1.46/26 gw4 192.168.1.1
+
+#json file -- team0.json
+{"runner":{"active": true,"fast_rate": true,"name": "loadbalancing","tx_hash": [ "eth", "ipv4" ]},"tx_balancer": { "name": "basic" },"link_watch": { "name": "ethtool" }}
