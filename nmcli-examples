@@ -3,3 +3,6 @@ nmcli connection add type team con-name team0 ifname team0 config team0.json ip4
 
 #json file -- team0.json
 {"runner":{"active": true,"fast_rate": true,"name": "loadbalancing","tx_hash": [ "eth", "ipv4" ]},"tx_balancer": { "name": "basic" },"link_watch": { "name": "ethtool" }}
+
+#Assign an IP to a NIC
+nmcli connection add type ethernet con-name enp2s0  ifname enp2s0 ip4 192.168.1.47/26
